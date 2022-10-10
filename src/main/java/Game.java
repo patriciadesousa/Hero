@@ -22,8 +22,7 @@ public class Game {
        this.screen.setCursorPosition(null); //we don't need a cursor
        this.screen.starscreen(); // screen must be started
         this.screen.doResizeIfNecessary(); //resize the screen if necessary
-    } catch (
-            IOException e) {
+    }  catch(IOException) {
         e.printStackTrace();
     }
 
@@ -42,7 +41,7 @@ public class Game {
                     screen.close();
                 }
                 if (key.getKeyType() == KeyType.EOF) {
-                    break,
+                    break;
                 }
                 processKey(key);
             }
