@@ -10,30 +10,21 @@ import javax.swing.*;
 import java.io.IOException;
 
 public class Game {
-    Screen screen;
-    private int x=10;
-    private int y=10;
-    private Hero hero;
-    public Game () throws IOException {
-        hero = new Hero(10,10);
-       Terminal terminal = new
-               DefaultTerminalFactory().createTerminal();
-       this.screen = new TerminalScreen(terminal);
-       this.screen.setCursorPosition(null); //we don't need a cursor
-       this.screen.starscreen(); // screen must be started
-        this.screen.doResizeIfNecessary(); //resize the screen if necessary
-    }  catch(IOException) {
-        e.printStackTrace();
-    }
-
-        private void draw() throws IOException {
-            screen.clear();
-            screen.setCharacter(x, y, TextCharacter.fromCharacter('X')[0]);
-            screen.refresh();
+    private Arena arena = new Arena(80,20);
+    public Game() throws IOException {
+        hero = new Hero(10, 10);
+        try {
+            createTerminal();
+            this.screen = new TerminalScreen(terminal);
+            this.screen.setCursorPosition(null); //we don't need a cursor
+            this.screen.starscreen(); // screen must be started
+            this.screen.doResizeIfNecessary(); //resize the screen if necessary
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
+    }
         public void run() throws IOException {
-            draw();
             while (true) {
                 draw();
                 KeyStroke key = screen.readInput();
@@ -43,35 +34,18 @@ public class Game {
                 if (key.getKeyType() == KeyType.EOF) {
                     break;
                 }
-                processKey(key);
+                arena.processKey(key);
             }
         }
         private Screen screen;
-        private void darw() throws IOException{
+        private void draw() throws IOException{
             screen.clear();
-            //screen.setCharacter(10,10, TextCharacter.fromCharacter ('X'[0]));
-            screen.setCharacter(x,y,TextCharacter.fromCharacter('X')[0]);
-            hero.draw(screen);
+            arena.draw(screen);
             screen.refresh();
         }
 
-    private void processKey(KeyStroke key) throws IOException {
-            //System.out.println(key);
-            if (ket.getKeyType()==KeyType.ArrowUp){
-                //y = y-1;
-                hero.setY(hero.getY()-1);
-            }
-            if (key.getKeyType()==KeyTyPE.ArrowDown){
-                //y = y+1
-                hero.setY(hero.getY()+1);
-            }
-            if (key.getKeyType()==KeyType.ArrowRight){
-                //x = x+1
-                hero.setX(hero.getX()+1);
-            }
-            if (key.getKeyType()==KeyType.ArrowLet){
-                //x = x-1
-                hero.setX(hero.getX()-1);
-            }
+    }
+    private void moveHero(Position position){
+            hero.setPosition(position);
     }
 }

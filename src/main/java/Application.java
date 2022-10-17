@@ -4,10 +4,10 @@ public class Application {
     public static void main(String[] args) throws IOException {
         Game game = new Game();
         game.run();
-        try{
+        try {
             game.run();
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-}
+    }
