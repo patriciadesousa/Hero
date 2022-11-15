@@ -3,8 +3,8 @@ public class Position {
     private int y;
 
     public Position(int m, int n){
-        x = m;
-        this.y = n;
+        this.x = x;
+        this.y = y;
     }
     public int getX(){
         return x;
@@ -16,7 +16,14 @@ public class Position {
         this.y = y;
     }
 
+    public boolean equals(Object o) {
+        if(o == null || o.getClass() != this.getClass()) return false;
+
+        return (this == o) ||
+                (this.x == ((Position) o).x && this.y == ((Position) o).y);
+    }
+
     public int getY() {
-        return getY();
+        return 0;
     }
 }
