@@ -34,10 +34,10 @@ public class Game {
         private void processKey(com.googlecode.lanterna.input.KeyStroke key){
         System.out.println(key);
         switch (key.getKeyType()) {
-            case ArrowUp    -> arena.moveHero(arena.moveUp());
-            case ArrowDown  -> arena.moveHero(arena.moveDown());
-            case ArrowLeft  -> arena.moveHero(arena.moveLeft());
-            case ArrowRight -> arena.moveHero(arena.moveRight());
+            case ArrowUp    : arena.moveHero(arena.moveUp());
+            case ArrowDown  : arena.moveHero(arena.moveDown());
+            case ArrowLeft  : arena.moveHero(arena.moveLeft());
+            case ArrowRight : arena.moveHero(arena.moveRight());
         }
 
     }

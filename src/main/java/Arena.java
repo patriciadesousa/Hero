@@ -32,7 +32,7 @@ public class Arena {
         for(Monster monster : monsters)
             monster.draw(screen);
     }
-    public Position moveUp() {
+    /*public Position moveUp() {
         return new Position(hero.getPosition().getX(), hero.getPosition().getY() - 1);
     }
 
@@ -46,13 +46,12 @@ public class Arena {
 
     public Position moveRight() {
         return new Position(hero.getPosition().getX()+1, hero.getPosition().getY());
-    }
+    }*/
 
     public void moveHero(Position position){
         if(canHeroMove(position))
             hero.setPosition(position);
-
-        retrieveCoins();
+            retrieveCoins();
     }
 
     private boolean canHeroMove(Position pos){
@@ -81,10 +80,10 @@ public class Arena {
         Random random = new Random();
         ArrayList<Coin> coins = new ArrayList<>();
         for(int i=0; i<5; i++){
-            Coin newcoin = new Coin(random.nextInt(width-2) + 1,
+            Coin c = new Coin(random.nextInt(width-2) + 1,
                     random.nextInt(height-2)+1);
-            if(!coins.contains(newcoin) && !newcoin.getPosition().equals(hero.getPosition()))
-                coins.add(newcoin);
+            if(!coins.contains(c) && !c.getPosition().equals(hero.getPosition()))
+                coins.add(c);
         }
         return coins;
     }
@@ -137,7 +136,7 @@ public class Arena {
     private List<Coin> coins;
     private List<Monster> monsters;
 
-    private class Hero extends Element {
+    /*private class Hero extends Element {
         private Hero(int x, int y) {
             super(x, y);
         }
@@ -147,6 +146,6 @@ public class Arena {
             screen.enableModifiers(SGR.BOLD);
             screen.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), "X");
         }
-    }
+    }*/
 }
 

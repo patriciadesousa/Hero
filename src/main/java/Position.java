@@ -9,6 +9,7 @@ public class Position {
     public int getX(){
         return x;
     }
+    public int getY(){return y;}
     public void setX(int x){
         this.x = x;
     }
@@ -21,9 +22,5 @@ public class Position {
 
         return (this == o) ||
                 (this.x == ((Position) o).x && this.y == ((Position) o).y);
-    }
-
-    public int getY() {
-        return 0;
     }
 }
