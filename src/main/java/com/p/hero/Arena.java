@@ -17,13 +17,14 @@ public class Arena {
     private int height;
 
     private List<Wall> walls;
+    private List<Monster> monsters;
+
     private List<Coin> coins;
     private List<Coin> createCoins() {
         Random random = new Random();
         ArrayList<Coin> coins = new ArrayList<>();
         for (int i = 0; i < 5; i++)
-            coins.add(new Coin(random.nextInt(width - 2) + 1,
-                    random.nextInt(height - 2) + 1));
+            coins.add(new Coin(random.nextInt(width - 2) + 1, random.nextInt(height - 2) + 1));
         return coins;
     }
 
@@ -40,7 +41,14 @@ public class Arena {
         }
         return walls;
     }
-
+    private List<Monster> createMonster(){
+        Random random = new Random();
+        ArrayList<Monster> monsters = new ArrayList<>();
+        for(int i = 0; i < 15; i++){
+            monsters.add(new Monster(random.nextInt(width - 2) + 1, random.nextInt(height - 2) + 1));
+        }
+        return monsters;
+    }
 
     public void setWidth(int x){
         width = x;
@@ -66,6 +74,7 @@ public class Arena {
         hero = new Hero(x / 2 , y / 2);
         this.walls = createWalls();
         this.coins = createCoins();
+        this.monsters = createMonster();
 
     }
 
@@ -86,10 +95,20 @@ public class Arena {
             }
         }
     }
+    public void verifyMonsterCollisions(Position position){
+        for(int i = 0; i < monsters.size() ; i++){
+            if(monsters.get(i).position.equals(position)){
+                System.out.println("Acabou");
+                System.exit(0);
+            }
+        }
+    }
+
 
     public void moveHero(Position position) {
         if (canHeroMove(position)) {
             retrieveCoins(position);
+            verifyMonsterCollisions(position);
             hero.setPosition(position);
         }
     }
@@ -110,5 +129,7 @@ public class Arena {
             wall.draw(graphics);
         for (Coin coin : coins)
             coin.draw(graphics);
+        for (Monster m : monsters)
+            m.draw(graphics);
     }
 }
