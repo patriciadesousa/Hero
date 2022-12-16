@@ -10,6 +10,9 @@ public class Hero {
         position.setX(x);
         position.setY(y);
     }
+    public Hero(){
+        this(10,10);
+    }
 
     public int getX() {
         return position.getX();
