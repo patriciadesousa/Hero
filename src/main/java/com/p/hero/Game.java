@@ -8,12 +8,11 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
-
+import com.googlecode.lanterna.graphics.TextGraphics;
 import java.io.IOException;
 
 public class Game {
-    private Screen screen;
-    private Arena arena = new Arena(80,40);
+    private TerminalScreen screen;    private Arena arena = new Arena(80,40);
 
     public Game() throws IOException {
 
@@ -30,16 +29,15 @@ public class Game {
         }
 
     }
-    private void draw(Screen screen) throws IOException {
-
+    private void draw() throws IOException {
         screen.clear();
-        arena.draw(screen);
+        arena.draw(screen.newTextGraphics());
         screen.refresh();
     }
 
     public void run() throws IOException {
         while(true){
-            draw(screen);
+            draw();
             KeyStroke key = screen.readInput();
             if(key.getKeyType() == KeyType.Character && key.getCharacter() == 'q'){
                 screen.close();

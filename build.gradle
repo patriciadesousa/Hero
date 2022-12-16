@@ -16,4 +16,7 @@ plugins {
 
 application {
     mainClass.set("Application")
+    repositories {
+        mavenCentral()
+    }
 }
